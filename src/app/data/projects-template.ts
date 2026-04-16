@@ -1,0 +1,40 @@
+import {ProjectsData} from '../models/projects.model';
+
+export const DATA: ProjectsData = {
+  subtitle: "List of my projects. Hover over the cards to see more details!",
+  projects: [
+    {
+      title: "Previous work project",
+      description: "Frontend for a responsive business app",
+      descriptionLong: "What was my role in this project? What features did I implement? What was the outcome? What was the learning experience?.",
+      technologies: [
+        "Technology1",
+        "Technology2",
+        "Technology3",
+        "Technology4"
+      ],
+      imageUrl: "home_project_blurred.png",
+      demoVideoUrl: "",
+      liveUrl: "",
+      productUrl: ""
+    },
+    {
+      title: "My current project",
+      description: "This project is under development",
+      descriptionLong: "My reason for starting this project? What is the expected outcome?",
+      technologies: [
+        "Technology1",
+        "Technology2",
+        "Technology3"
+      ],
+      imageUrl: "home_project_blurred.png",
+      demoVideoUrl: "",
+      liveUrl: "",
+      productUrl: ""
+    }
+  ],
+  hint: {
+    title: "Ai-assisted development",
+    description: "What is my opinion about AI-assisted development? What are the benefits? What are the challenges? What should I expect from the AI?"
+  }
+}

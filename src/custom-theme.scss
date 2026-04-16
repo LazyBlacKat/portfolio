@@ -1,0 +1,168 @@
+@use '@angular/material' as mat;
+
+// Define custom color palettes
+$dark-primary: (
+  50: #e8eaf6,
+  100: #c5cae9,
+  200: #9fa8da,
+  300: #7986cb,
+  400: #5c6bc0,
+  500: #3f51b5,
+  600: #3949ab,
+  700: #303f9f,
+  800: #283593,
+  900: #1a237e,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+$dark-accent: (
+  50: #f3e5f5,
+  100: #e1bee7,
+  200: #ce93d8,
+  300: #ba68c8,
+  400: #ab47bc,
+  500: #9c27b0,
+  600: #8e24aa,
+  700: #7b1fa2,
+  800: #6a1b9a,
+  900: #4a148c,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+$light-primary: (
+  50: #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: #2196f3,
+  600: #1e88e5,
+  700: #1976d2,
+  800: #1565c0,
+  900: #0d47a1,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+html {
+  @include mat.theme((
+    color: (
+      primary: $dark-primary,
+      tertiary: $dark-accent,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+// Light theme for body[data-theme="light"]
+body[data-theme="light"] {
+  @include mat.theme((
+    color: (
+      primary: $light-primary,
+      tertiary: $dark-accent,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+// Slide toggle overrides for dark theme
+body[data-theme="dark"] {
+  @include mat.slide-toggle-overrides((
+    //selected-handle-color: #ffffff,
+    selected-icon-color: #6c5ce7,
+    //selected-track-color: #6c5ce7,
+    //unselected-handle-color: #e0e0e0,
+    unselected-icon-color: #555555,
+    //unselected-track-color: #888888,
+  ));
+}
+
+// Slide toggle overrides for light theme
+body[data-theme="light"] {
+  @include mat.slide-toggle-overrides((
+    //selected-handle-color: #ffffff,
+    selected-icon-color: #2196f3,
+    //selected-track-color: #2196f3,
+    //unselected-handle-color: #666666,
+    unselected-icon-color: #555555,
+    //unselected-track-color: #aaaaaa,
+  ));
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  // Dark theme (default)
+  &[data-theme="dark"] {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-tertiary: #0f1624;
+    --accent-primary: #6c5ce7;
+    --accent-secondary: #a29bfe;
+    --accent-purple: #9b59b6;
+    --text-primary: #e8eaf6;
+    --text-secondary: #b0b3c1;
+    --text-muted: #7a7d8c;
+    --border-color: #2d3561;
+    --shadow: rgba(0, 0, 0, 0.5);
+
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+    color: var(--text-primary);
+    color-scheme: dark;
+  }
+
+  // Light theme
+  &[data-theme="light"] {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e9ecef;
+    --accent-primary: #2196f3;
+    --accent-secondary: #64b5f6;
+    --accent-purple: #7e57c2;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a4a6a;
+    --text-muted: #7a7a9a;
+    --border-color: #dee2e6;
+    --shadow: rgba(0, 0, 0, 0.1);
+
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 50%, var(--bg-tertiary) 100%);
+    color: var(--text-primary);
+    color-scheme: light;
+  }
+}

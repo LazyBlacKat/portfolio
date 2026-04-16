@@ -1,0 +1,137 @@
+<!-- Floating Accessibility Toggle Button -->
+<button
+  mat-fab
+  class="accessibility-toggle-btn"
+  [class.toolbar-open]="accessibilityService.toolbarOpen()"
+  (click)="accessibilityService.toggleToolbar()"
+  matTooltip="Accessibility Options"
+  matTooltipPosition="left"
+  aria-label="Toggle accessibility toolbar">
+  <mat-icon>accessibility_new</mat-icon>
+</button>
+
+<!-- Accessibility Toolbar Panel -->
+<div
+  class="accessibility-toolbar"
+  [class.open]="accessibilityService.toolbarOpen()"
+  [class.mobile]="navService.isMobile()">
+
+  <div class="toolbar-header">
+    <div class="header-content">
+      <mat-icon>accessibility_new</mat-icon>
+      <h3>Accessibility</h3>
+    </div>
+    <button mat-icon-button (click)="accessibilityService.toggleToolbar()" aria-label="Close accessibility toolbar">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="toolbar-content">
+    <!-- Font Size Controls -->
+    <div class="control-section">
+      <div class="section-title">
+        <mat-icon>text_fields</mat-icon>
+        <span>Text Size</span>
+      </div>
+      <div class="font-size-controls">
+        <button
+          mat-icon-button
+          (click)="accessibilityService.decreaseFontSize()"
+          [disabled]="accessibilityService.fontSize() <= 80"
+          matTooltip="Decrease text size"
+          aria-label="Decrease text size">
+          <mat-icon>remove</mat-icon>
+        </button>
+        <span class="font-size-value">{{ accessibilityService.fontSize() }}%</span>
+        <button
+          mat-icon-button
+          (click)="accessibilityService.increaseFontSize()"
+          [disabled]="accessibilityService.fontSize() >= 150"
+          matTooltip="Increase text size"
+          aria-label="Increase text size">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button
+          mat-stroked-button
+          (click)="accessibilityService.resetFontSize()"
+          class="reset-btn"
+          matTooltip="Reset to default"
+          aria-label="Reset text size">
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Toggle Options -->
+    <div class="control-section">
+      <div class="section-title">
+        <mat-icon>tune</mat-icon>
+        <span>Display Options</span>
+      </div>
+      <div class="toggle-options">
+        <div class="toggle-item">
+          <div class="toggle-label">
+            <mat-icon>contrast</mat-icon>
+            <span>High Contrast</span>
+          </div>
+          <mat-slide-toggle
+            [checked]="accessibilityService.highContrast()"
+            (change)="accessibilityService.toggleHighContrast()"
+            color="primary"
+            aria-label="Toggle high contrast mode">
+          </mat-slide-toggle>
+        </div>
+
+        <div class="toggle-item">
+          <div class="toggle-label">
+            <mat-icon>auto_stories</mat-icon>
+            <span>Enhanced Readability</span>
+          </div>
+          <mat-slide-toggle
+            [checked]="accessibilityService.enhancedReadability()"
+            (change)="accessibilityService.toggleEnhancedReadability()"
+            color="primary"
+            aria-label="Toggle increased text spacing and readable font">
+          </mat-slide-toggle>
+        </div>
+
+        <div class="toggle-item">
+          <div class="toggle-label">
+            <mat-icon>link</mat-icon>
+            <span>Highlight Links</span>
+          </div>
+          <mat-slide-toggle
+            [checked]="accessibilityService.linkHighlight()"
+            (change)="accessibilityService.toggleLinkHighlight()"
+            color="primary"
+            aria-label="Toggle link highlighting">
+          </mat-slide-toggle>
+        </div>
+
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Reset All -->
+    <div class="control-section">
+      <button
+        mat-stroked-button
+        (click)="accessibilityService.resetAllSettings()"
+        class="reset-all-btn"
+        aria-label="Reset all accessibility settings">
+        <mat-icon>restore</mat-icon>
+        Reset All Settings
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay when toolbar is open -->
+<div
+  class="toolbar-overlay"
+  [class.visible]="accessibilityService.toolbarOpen()"
+  (click)="accessibilityService.toggleToolbar()">
+</div>

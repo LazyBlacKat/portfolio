@@ -1,0 +1,25 @@
+<div class="about-container" [class.mobile]="navService.isMobile()">
+  <div class="content-wrapper">
+    <div class="section-header">
+      <h2 class="section-title">About Me</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">{{ subtitle() }}</p>
+    </div>
+
+    <div class="cards-grid">
+      @for (item of tips(); track item.title) {
+        <mat-card class="tip-card" appearance="outlined">
+          <mat-card-header class="card-header">
+            <div mat-card-avatar class="card-icon-wrapper">
+              <mat-icon class="card-icon">{{ item.icon }}</mat-icon>
+            </div>
+            <mat-card-title>{{ item.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="tip-text">{{ item.tip }}</p>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="references-container" [class.mobile]="navService.isMobile()">
+  <div class="content-wrapper">
+    <div class="section-header">
+      <h2 class="section-title">References</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">{{ subtitle() }}</p>
+    </div>
+
+    <div class="references-grid">
+      @for (reference of references(); track reference.name; let i = $index) {
+        <mat-card class="reference-card" appearance="outlined">
+          <mat-card-content>
+            <div class="quote-icon">
+              <mat-icon>format_quote</mat-icon>
+            </div>
+            <div class="reference-text-wrapper">
+              <p class="reference-text">{{ showTranslation[i] && reference.translation ? reference.translation : reference.text }}</p>
+              @if (reference.translation) {
+                <button mat-icon-button class="translate-button" [class.active]="showTranslation[i]" (click)="toggleTranslation(i)" [attr.aria-label]="showTranslation[i] ? 'Show original' : 'Show translation'">
+                  <mat-icon>translate</mat-icon>
+                </button>
+              }
+            </div>
+            <div class="reference-author">
+              <div class="author-info">
+                <h4 class="author-name">{{ reference.name }}</h4>
+                <p class="author-position">{{ reference.position }}</p>
+                <p class="author-company">{{ reference.company }}</p>
+                <p class="author-relationship">{{ reference.relationship }}</p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+</div>

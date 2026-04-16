@@ -1,0 +1,25 @@
+<div class="title-container" [class.mobile]="navService.isMobile()">
+  <div class="content-wrapper">
+    <div class="intro-section">
+      <div class="greeting">
+        <p class="welcome">Welcome to my Portfolio</p>
+        <h1 class="name">Hi, I'm {{ name() }}</h1>
+        <h2 class="title">{{ role() }}</h2>
+      </div>
+
+      <p class="description">{{ summary() }}</p>
+
+    </div>
+
+    <div class="photo-section">
+      <div class="photo-wrapper">
+        <div class="photo-label">
+          <h2>{{ objective() }}</h2>
+        </div>
+        <div class="photo-placeholder">
+          <img src="portfolio-draw.jpg" alt="Profile Photo" class="profile-photo">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

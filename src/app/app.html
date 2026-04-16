@@ -1,0 +1,96 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Mobile Sidebar -->
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    [opened]="navService.mobileMenuOpen()"
+    (openedChange)="onSidenavChange($event)"
+    class="mobile-sidenav">
+    <div class="sidenav-header">
+      <h2>Menu</h2>
+      <button mat-icon-button (click)="navService.closeMobileMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-nav-list>
+      @for (section of sections; track section.id) {
+        <a
+          mat-list-item
+          (click)="scrollToSection(section.id)"
+          [ngClass]="{'active': navService.activeSection() === section.id}">
+          {{ section.label }}
+        </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Navigation Bar -->
+    <nav class="navbar" [ngClass]="{'mobile': navService.isMobile()}">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <h1>Portfolio</h1>
+        </div>
+
+        <!-- Desktop Navigation -->
+        @if (!navService.isMobile()) {
+          <div class="nav-links">
+            @for (section of sections; track section.id) {
+              <button
+                mat-button
+                (click)="scrollToSection(section.id)"
+                [ngClass]="{'active': navService.activeSection() === section.id}">
+                {{ section.label }}
+              </button>
+            }
+          </div>
+        }
+
+        <div class="nav-actions">
+          <button
+            mat-icon-button
+            (click)="toggleTheme()"
+            [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+            <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+          </button>
+
+          @if (navService.isMobile()) {
+            <button mat-icon-button (click)="navService.toggleMobileMenu()">
+              <mat-icon>menu</mat-icon>
+            </button>
+          }
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <section id="home" class="section">
+        <app-title-page />
+      </section>
+
+      <section id="about" class="section">
+        <app-about-me />
+      </section>
+
+      <section id="skills" class="section">
+        <app-skills />
+      </section>
+
+      <section id="projects" class="section">
+        <app-projects />
+      </section>
+
+      <section id="references" class="section">
+        <app-references />
+      </section>
+
+      <section id="contact" class="section">
+        <app-contact />
+      </section>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- Accessibility Toolbar -->
+<app-accessibility-toolbar />

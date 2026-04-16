@@ -1,0 +1,47 @@
+<div class="skills-container">
+  <div class="content-wrapper">
+    <div class="section-header">
+      <h2 class="section-title">Skills & Expertise</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">{{  subtitle() }}</p>
+    </div>
+
+    <div class="legend">
+      @for (category of categories(); track category.id) {
+        <div
+          class="legend-item"
+          [class.active]="selectedCategory() === category.id"
+          (click)="filterByCategory(selectedCategory() === category.id ? null : category.id)">
+          <span class="legend-dot" [style.background-color]="category.color"></span>
+          <span class="legend-label">{{ category.label }}</span>
+        </div>
+      }
+      <mat-form-field class="search-field" appearance="outline">
+        <mat-label>Search skill</mat-label>
+        <input type="text" style="border: transparent"
+               aria-label="Skill search"
+               matInput
+               (input)="onSearchInput($event)">
+      </mat-form-field>
+    </div>
+    <div class="skills-list">
+      @for (skill of filteredSkills(); track skill.id) {
+        <div
+          class="skill-item"
+          [style.border-left-color]="categoryColors()[skill.category]">
+          <div class="skill-item-header">
+            <span class="skill-item-name">{{ skill.name }}</span>
+            <span class="skill-item-category">{{ skill.category }}</span>
+          </div>
+          @if (skill.children && skill.children.length > 0) {
+            <div class="skill-badges">
+              @for (child of skill.children; track child.id) {
+                <span class="skill-badge">{{ child.name }}</span>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

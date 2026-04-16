@@ -1,0 +1,27 @@
+import {AboutData} from '../models/about.model';
+
+export const DATA: AboutData = {
+  subtitle: "Bringing ideas to life through a blend of technical skill and creative vision.",
+  tips: [
+    {
+      icon: "psychology",
+      title: "My Journey",
+      tip: "Sharing my unique path into development. What sparked my interest? What challenges did I overcome?"
+    },
+    {
+      icon: "favorite",
+      title: "My Passion",
+      tip: "What excites me about coding? Which technologies make me lose track of time? What problems do I love solving?"
+    },
+    {
+      icon: "emoji_people",
+      title: "My Values",
+      tip: "What kind of team culture fits me best? What principles guide my work? How do I approach collaboration?"
+    },
+    {
+      icon: "workspace_premium",
+      title: "My Goal",
+      tip: "Where do I see myself growing? What kind of projects inspire me? What impact do I want to make?"
+    }
+  ]
+}

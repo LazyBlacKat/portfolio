@@ -1,0 +1,65 @@
+<div class="projects-container" [class.mobile]="navService.isMobile()">
+  <div class="content-wrapper">
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">{{ subtitle()}}</p>
+    </div>
+
+    <div class="projects-grid">
+      @for (project of projects(); track project.title) {
+        <mat-card class="project-card" appearance="outlined">
+          <div class="project-image-wrapper">
+            <img [src]="project.imageUrl" [alt]="project.title" class="project-image">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <p>{{ project.descriptionLong }}</p>
+                <div class="tech-stack">
+                  @for (tech of project.technologies; track tech) {
+                    <mat-chip>{{ tech }}</mat-chip>
+                  }
+                </div>
+                <div class="project-actions">
+                  @if (project.liveUrl) {
+                    <a [href]="project.liveUrl" target="_blank" rel="noopener">
+                      <button mat-raised-button color="primary">
+                        <mat-icon>slideshow</mat-icon>
+                        Live Demo
+                      </button>
+                    </a>
+                  }
+                  @if (project.githubUrl) {
+                    <a [href]="project.githubUrl" target="_blank" rel="noopener">
+                      <button mat-stroked-button>
+                        <mat-icon>code</mat-icon>
+                        Code
+                      </button>
+                    </a>
+                  }
+                  @if (project.productUrl) {
+                    <a [href]="project.productUrl" target="_blank" rel="noopener">
+                      <button mat-stroked-button>
+                        <mat-icon>launch</mat-icon>
+                        Product Page
+                      </button>
+                    </a>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-card-content class="card-preview">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-short-desc">{{ project.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+
+    <div class="timeline-hint">
+      <mat-icon>lightbulb</mat-icon>
+      <p><strong>{{ hintTitle() }}:</strong> {{ hintDescription() }}</p>
+    </div>
+
+  </div>
+</div>
